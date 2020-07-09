@@ -18,8 +18,10 @@ def all_houses(filename):
 
     hag_data = open(filename)
 
+
     # create list for houses, including repeats
     all_houses = []
+
 
     for line in hag_data:
       # strip and tokenize the line by "|"
@@ -29,6 +31,8 @@ def all_houses(filename):
 
       if house != '':
         all_houses.append(house)
+
+
 
     # makes all_houses list a set (no repeats)
     houses = set(all_houses)
@@ -66,10 +70,35 @@ def students_by_cohort(filename, cohort='All'):
       - list[list]: a list of lists
     """
 
+
+    hag_data = open(filename)
+
     students = []
 
-    # TODO: replace this with your code
+    for line in hag_data:
+      # strip and tokenize the line by "|"
+      line = line.strip()
+      info_list = line.split('|')
 
+      # Assigns items from info list to corresponding variables
+      first_name = info_list[0]
+      last_name = info_list[1]
+      info_cohort = info_list[-1]
+
+      name_string = first_name + ' ' + last_name
+
+      # Keeps loop from adding ghosts and instructors
+      if info_cohort == 'I' or info_cohort == 'G':
+        continue
+
+      # if cohort is specified (not "All")
+      if cohort != 'All':
+        if info_cohort == cohort:
+          students.append(name_string)
+      else:
+        students.append(name_string)
+
+     # return sorted list of students
     return sorted(students)
 
 
