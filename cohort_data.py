@@ -15,9 +15,25 @@ def all_houses(filename):
       - set[str]: a set of strings
     """
 
-    houses = set()
 
-    # TODO: replace this with your code
+    hag_data = open(filename)
+
+    # create list for houses, including repeats
+    all_houses = []
+
+    for line in hag_data:
+      # strip and tokenize the line by "|"
+      line = line.strip()
+      info_list = line.split('|')
+      house = info_list[2]
+
+      if house != '':
+        all_houses.append(house)
+
+    # makes all_houses list a set (no repeats)
+    houses = set(all_houses)
+
+    hag_data.close()
 
     return houses
 
