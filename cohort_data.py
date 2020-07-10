@@ -141,9 +141,44 @@ def all_names_by_house(filename):
     ghosts = []
     instructors = []
 
-    # TODO: replace this with your code
+    hag_data = open(filename)
 
-    return []
+    for line in hag_data:
+      # strip and tokenize the line by "|"
+      info_list = line.strip().split('|')
+      
+      # make variables for each token
+      first_name, last_name, house, adviser, cohort = info_list
+
+      name_string = first_name + ' ' + last_name
+
+      # add full name to list by house or ghost/instructor
+      if cohort == 'I':
+        instructors.append(name_string)
+
+      elif cohort == 'G':
+        ghosts.append(name_string)
+
+      elif house == "Dumbledore's Army":
+        dumbledores_army.append(name_string)
+
+      elif house == "Gryffindor":
+        gryffindor.append(name_string)
+
+      elif house == "Hufflepuff":
+        hufflepuff.append(name_string)
+
+      elif house == "Ravenclaw":
+        ravenclaw.append(name_string)
+
+      elif house == "Slytherin":
+        slytherin.append(name_string)
+
+
+    # put sorted house/ghost/instructors lists in one list
+    return [sorted(dumbledores_army), sorted(gryffindor), sorted(hufflepuff), 
+            sorted(ravenclaw), sorted(slytherin), sorted(ghosts), sorted(instructors)]
+
 
 
 def all_data(filename):
@@ -167,7 +202,19 @@ def all_data(filename):
 
     all_data = []
 
-    # TODO: replace this with your code
+    hag_data = open(filename)
+
+    for line in hag_data:
+      # strip and tokenize the line by "|"
+      info_list = line.strip().split('|')
+      
+      # make variables for each token
+      first_name, last_name, house, adviser, cohort = info_list
+
+      full_name = first_name + ' ' + last_name
+
+      person_tup = (full_name, house, adviser, cohort)
+      all_data.append(person_tup)
 
     return all_data
 
